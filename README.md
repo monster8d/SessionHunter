@@ -78,7 +78,7 @@ All official releases are distributed in the **GitHub Releases** section. Downlo
 *   **Portable Binary (`SessionHunter-v1.0.0-Windows-Portable.exe`)**: Self-contained, zero-installation executable. Simply double-click and run from anywhere (USB drive, Desktop, etc.).
 *   **Zip Archive (`SessionHunter-v1.0.0-Windows-x64.zip`)**: Hand-deployable folder structure containing all dependencies.
 
-### 🐧 Linux builds (Debian / Ubuntu / Generic x64)
+### 🐧 Linux builds (Debian / Ubuntu / Generic x64) ( UPCOMING! )
 *   **Debian Package (`SessionHunter-v1.0.0-Linux-amd64.deb`)**: Installed system-wide using:
     ```bash
     sudo dpkg -i SessionHunter-v1.0.0-Linux-amd64.deb
