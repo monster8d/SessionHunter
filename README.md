@@ -1,338 +1,114 @@
-# SessionHunter
+# <p align="center"><img src="asset/banner.png" alt="SessionHunter Banner" width="100%" /></p>
 
 <p align="center">
-  <img src="docs/images/icon.png" width="220">
-</p>
-
-<h3 align="center">
-Reconstruct Every Session. Trace Every Action. Prove Every Event.
-</h3>
-
-<p align="center">
-Enterprise Digital Forensics & Incident Response Platform
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-0078d7?style=for-the-badge&logo=windows" alt="Platform" />
+  <img src="https://img.shields.io/badge/Build-Compiled%20Binaries-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Build Type" />
+  <img src="https://img.shields.io/badge/GUI-PyQt6%20%2B%20HTML5-22d3ee?style=for-the-badge&logo=qt" alt="UI Framework" />
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License" />
 </p>
 
 ---
 
-## Overview
+## 🔍 What is SessionHunter?
 
-SessionHunter is an advanced Digital Forensics & Incident Response (DFIR) platform designed to reconstruct user activity across Linux infrastructure.
+**SessionHunter** is a premium, standalone desktop forensic console built with **PyQt6** and **HTML5/JS**. It connects to remote Linux and Windows servers agentlessly (or via a lightweight agent) over a single **SSH transport** to reconstruct a comprehensive, unified forensic timeline of user activity: **who** logged in, **what** they typed, **from where**, and **when**.
 
-The platform enables investigators, SOC teams, CERT teams, internal audit teams, and forensic analysts to determine:
+All logs are automatically normalized into a local SQLite database, resolved against offline/online GeoIP databases, and rendered in a futuristic HUD-style interface. 
 
-- Who logged in
-- From where they connected
-- Which commands they executed
-- Which files were accessed
-- Which files were modified
-- What persistence mechanisms were created
-- Whether data was exfiltrated
-- What happened before, during, and after an incident
+To protect intellectual property and ensure secure credential vaulting, **the application is distributed strictly as pre-compiled native machine binaries** (`.exe`, `.deb`, and portable formats). No Python source code is distributed.
 
-Unlike traditional log viewers, SessionHunter correlates multiple forensic artifacts into a unified investigation timeline.
 
 ---
 
-## Dashboard
+## ✨ Key Features
 
-![Dashboard](docs/images/dashboard.png)
-
-The dashboard provides:
-
-- Host inventory
-- Event timeline
-- Session correlation
-- Geo-IP intelligence
-- Actor attribution
-- Evidence search
-- Live forensic collection
+*   **Unified Forensic Timeline**: Correlates authentication logs, terminal commands, process executions, and session activity into a single chronological view.
+*   **Dual Mode Collection**:
+    *   *Agentless*: Zero footprint on target host. Pulls and parses log files on demand.
+    *   *Agent-assisted*: One-click copy-paste command installs a lightweight, tamper-resistant collector script to capture real-time execution flows.
+*   **Futuristic HUD UI**: Dark-themed, neon-accented PyQt6 window embedded with a premium QtWebEngine dashboard, interactive maps (using Leaflet/OSM), and session flow charts.
+*   **OS Autodetection**: Automatically detects host OS, log file locations, and calculates clock drift offsets.
+*   **Deep Geolocation**: Integrates with local MaxMind GeoLite2-City databases and online GeoIP APIs to map log source IPs automatically.
+*   **Secure Vaulting**: Encrypts target credentials using either the **OS Keyring** (Windows Credential Manager / Keychain) or a local **AES-256-Fernet vault** secured by a master password.
 
 ---
 
-## Interactive Timeline Reconstruction
+## 📸 Interface & Capabilities Showcase
 
-![Timeline](docs/images/timeline.png)
+### 📊 Main Dashboard & Event Timeline
+The core timeline interface correlates events in real-time. It features host state cards, a neon-segmented navigation bar, and high-contrast timeline logs.
+<p align="center">
+  <img src="asset/dashboard-timeline.png" alt="Main Dashboard Timeline" width="90%" />
+</p>
 
-SessionHunter reconstructs activity from:
+### 🗺️ GeoIP Investigation Map
+Visualizes login locations using Leaflet maps. Markers cluster based on geolocation data (city/country) to help security teams identify anomaly locations immediately.
+<p align="center">
+  <img src="asset/geoip-investigation-map.png" alt="GeoIP Investigation Map" width="90%" />
+</p>
 
-- SSH logs
-- Auditd
-- Journalctl
-- Bash History
-- Sudo Logs
-- Auth Logs
-- System Logs
+### 🛠️ Live Forensic Toolkit
+Allows run-time query execution directly on connected endpoints. From this menu, users can execute specialized commands to inspect files, packages, and network state.
+<p align="center">
+  <img src="asset/live-forensic-toolkit.png" alt="Live Forensic Toolkit" width="90%" />
+</p>
 
-Analysts can investigate:
+### 📂 Forensic Detail Modules
+Deep-dives into host configuration, file modifications, installed packages, and network states:
+<p align="center">
+  <img src="asset/forensics-file-modifications.png" alt="Forensics File Modifications" width="48%" />
+  <img src="asset/forensics-installed-packages.png" alt="Forensics Installed Packages" width="48%" />
+</p>
 
-- User sessions
-- Source IPs
-- Authentication methods
-- Commands executed
-- Timeline context
-
----
-
-## Investigation Map
-
-![Map](docs/images/map.png)
-
-Visualize:
-
-- Login locations
-- Source IP clustering
-- User activity by geography
-- High-risk locations
-- Geo-IP intelligence
+### ⚙️ Contextual Analysis Menus
+Security teams can right-click any event to launch dedicated lookup flows like reverse DNS, actor history, and contextual command tracking.
+<p align="center">
+  <img src="asset/event-investigation-menu.png" alt="Event Investigation Menu" width="48%" />
+  <img src="asset/network-forensics-menu.png" alt="Network Forensics Menu" width="48%" />
+</p>
 
 ---
 
-## Session Reconstruction
+## 🚀 Downloading and Running SessionHunter
 
-Determine:
+All official releases are distributed in the **GitHub Releases** section. Download the appropriate package for your platform:
 
-- Login time
-- Logout time
-- Source IP
-- User account
-- TTY used
-- Session duration
-- Commands executed
+### 🪟 Windows Setup & Portable
+*   **Windows Installer (`SessionHunter-v1.0.0-Windows-Setup.exe`)**: Standard installer wizard that sets up SessionHunter under `Program Files` and creates a desktop shortcut.
+*   **Portable Binary (`SessionHunter-v1.0.0-Windows-Portable.exe`)**: Self-contained, zero-installation executable. Simply double-click and run from anywhere (USB drive, Desktop, etc.).
+*   **Zip Archive (`SessionHunter-v1.0.0-Windows-x64.zip`)**: Hand-deployable folder structure containing all dependencies.
 
-Supported sources:
-
-- Auditd
-- SSH
-- Bash
-- ZSH
-- Journalctl
-- Sudo
-
----
-
-## File Access & Modification Analysis
-
-Investigate:
-
-- Files modified
-- Sensitive files accessed
-- Recently changed files
-- Ownership changes
-- Permission changes
-- Webroot modifications
-
-Examples:
-
-- /etc/passwd
-- /etc/shadow
-- /etc/sudoers
-- SSH keys
-- Web application files
+### 🐧 Linux builds (Debian / Ubuntu / Generic x64)
+*   **Debian Package (`SessionHunter-v1.0.0-Linux-amd64.deb`)**: Installed system-wide using:
+    ```bash
+    sudo dpkg -i SessionHunter-v1.0.0-Linux-amd64.deb
+    ```
+*   **Portable Binary (`SessionHunter-v1.0.0-Linux-x64-Portable`)**: Standalone binary—make executable and run directly:
+    ```bash
+    chmod +x SessionHunter-v1.0.0-Linux-x64-Portable
+    ./SessionHunter-v1.0.0-Linux-x64-Portable
+    ```
+*   **Tarball (`SessionHunter-v1.0.0-Linux-x64.tar.gz`)**: Extract and run manual deployments.
 
 ---
 
-## Authentication & Account Forensics
+## 🛠️ Architecture Flow
 
-Analyze:
-
-- SSH activity
-- Failed logins
-- Brute force attempts
-- New users
-- Privilege escalation
-- Sudo execution
-- Account modifications
-
----
-
-## Process & Memory Forensics
-
-Investigate:
-
-- Running processes
-- Suspicious executables
-- Parent-child relationships
-- Deleted binaries
-- Open handles
-- Memory artifacts
-
-Compatible with:
-
-- AVML
-- LiME
-- Volatility
+```mermaid
+graph TD
+    UI[PyQt6 HUD Dashboard] <--> |QWebChannel Bridge| JS[HTML5/Leaflet Frontend]
+    UI <--> |Local Read/Write| DB[(SQLite Database WAL Mode)]
+    UI <--> |Auth / Decryption| Vault[(AES-256 Credentials Vault)]
+    
+    UI --> |Spawn QThread Workers| Sched[Polling Scheduler]
+    Sched --> |QThread Loops| Worker[SSH Worker Threads]
+    
+    Worker --> |Secure Transport| Target((Remote Server Linux/Windows))
+    Target --> |Logs / Agent Output| Worker
+    Worker --> |Normalize Events| UI
+```
 
 ---
 
-## Network Forensics
-
-Analyze:
-
-- Established connections
-- Listening services
-- DNS configuration
-- Routing tables
-- ARP cache
-- Firewall rules
-
-Detect:
-
-- Reverse shells
-- Unauthorized listeners
-- External communications
-- Suspicious endpoints
-
----
-
-## Persistence Hunting
-
-Detect:
-
-- Cron jobs
-- Systemd services
-- Timers
-- Startup scripts
-- SSH key persistence
-- Shell profile persistence
-- LD_PRELOAD abuse
-
----
-
-## Filesystem & Malware Hunting
-
-Capabilities:
-
-- Hidden files
-- Executables in temp folders
-- SUID binaries
-- SGID binaries
-- Linux capabilities
-- YARA scanning
-- Malware indicators
-
----
-
-## Log Forensics
-
-Analyze:
-
-- auth.log
-- secure
-- syslog
-- journalctl
-- kernel logs
-- application logs
-
-Build complete incident timelines.
-
----
-
-## Web Server Forensics
-
-Supported:
-
-- Apache
-- Nginx
-- PHP
-- PHP-FPM
-
-Investigate:
-
-- Web shells
-- Suspicious uploads
-- Command execution
-- SQL injection attempts
-- Path traversal attempts
-
----
-
-## Package & Software Analysis
-
-Identify:
-
-- Recently installed software
-- Unauthorized packages
-- Package integrity violations
-- Dependency abuse
-
-Supported:
-
-- RPM
-- DNF
-- YUM
-- APT
-- DPKG
-
----
-
-## Data Exfiltration Detection
-
-Detect:
-
-- SCP transfers
-- SFTP usage
-- Rsync activity
-- Rclone
-- Cloud uploads
-- Archive creation
-
-Indicators include:
-
-- Large archives
-- Recent exports
-- External transfers
-- Data staging activity
-
----
-
-## Container Forensics
-
-Supported:
-
-- Docker
-- Kubernetes
-
-Investigate:
-
-- Container modifications
-- Runtime changes
-- Privileged containers
-- Suspicious images
-- Kubernetes events
-
----
-
-## Architecture
-
-Agent Philosophy:
-
-> Agent is a Sensor. Server is the Analyst.
-
-The endpoint performs lightweight collection while forensic intelligence remains centralized.
-
-Benefits:
-
-- Low endpoint footprint
-- Reduced attack surface
-- Centralized correlation
-- Faster investigations
-
----
-
-## Intended Users
-
-- DFIR Teams
-- SOC Analysts
-- CERT Teams
-- Government Agencies
-- Internal Audit Teams
-- Incident Responders
-- Security Operations Centers
-
----
-
-## License
-
-Proprietary Software
-
-Copyright © SessionHunter
+## 🛡️ Licensing & Authorization
+This is a security audit and forensic tool. Ensure you have **explicit authorization** to connect and audit any hosts you register in the console. Unauthorized host monitoring is strictly prohibited.
